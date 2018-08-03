@@ -1,7 +1,16 @@
 # not-tw (nautilus-open-terminal-terminal-wrapper)
 A shell wrapper for the nautilus-open-terminal plugin that works with other terminals than on the hardcoded list.
 
-## Problem
+## Warning
+This wrapper will also be called if some gnome program calls the [prepend_terminal_to_vector function](https://gitlab.gnome.org/GNOME/glib/blob/master/gio/gdesktopappinfo.c#L2465)  
+
+There are three szenarios that will happen with termite used as terminal emulator:  
+- When no path in the 4th parameter, nothing will happen, internally termite will throw an exception that the path is missing
+- If there only one path in the 4th argv parameter, a terminal will popup in the given path
+- If there are multiple paths in the 4th argv parameter, only the first path will be used and again a terminal pops up in the given path.
+ 
+
+## Problem Description
 If you use [Gnome Nautilus](https://wiki.archlinux.org/index.php/GNOME/Files) with the nautilus-open-terminal plugin ([AUR Link](https://aur.archlinux.org/packages/nautilus-open-terminal-git/)), which opens a terminal in the current folder, and don't have installed on of the hardcoded terminals it won't do anything on click...  
 GLib have a hardcoded terminal list [[1]](https://gitlab.gnome.org/GNOME/glib/blob/master/gio/gdesktopappinfo.c#L2498) and the plugin depends on GLib.  
 `Hardcoded list (in order): gnome-terminal, nxterm, color-xterm, rxvt, dtterm and finally xterm even if it isn't installed.` See the commment of ([Cj-Malone from 2018-05-10 14:04](https://aur.archlinux.org/packages/nautilus-open-terminal-git/))
@@ -39,4 +48,3 @@ As stated in the Solution section it's possible to configure the script with the
 
 # Releases
 v0.1.33.7 - initial release
-
