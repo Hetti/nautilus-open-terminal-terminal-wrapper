@@ -37,6 +37,6 @@ For more information about the parameters check out the man page for termite
 As stated in the Solution section it's possible to configure the script with the 3 variables to be used also with other terminal emulators.
 
 
-#Releases
+# Releases
 v0.1.33.7 - initial release
 
